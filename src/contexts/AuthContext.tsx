@@ -43,8 +43,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         .eq('user_id', userId)
         .eq('status', 'active')
         .gte('ends_at', nowISO)
-        .limit(1)
-        .single();
+        .limit(1);
 
       console.log('Subscription check result:', data, 'error:', error);
 
@@ -54,7 +53,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         return;
       }
 
-      setHasSubscription(!!data);
+      // Check if data array contains any elements
+      setHasSubscription(data && data.length > 0);
     } catch (error) {
       console.error('Error checking subscription:', error);
       setHasSubscription(false);
