@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         .eq('status', 'active')
         .gte('ends_at', nowISO)
         .limit(1)
-        .Single();
+        .single();
 
       console.log('Subscription check result:', data, 'error:', error);
 
