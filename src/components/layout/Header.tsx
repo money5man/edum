@@ -57,6 +57,7 @@ const Header = ({ isScrolled }: HeaderProps) => {
             <NavLink to="/games" className={navLinkClasses}>Games</NavLink>
             <NavLink to="/activities" className={navLinkClasses}>Activities</NavLink>
             <NavLink to="/testimonials" className={navLinkClasses}>Testimonials</NavLink>
+            <NavLink to="/subscription" className={navLinkClasses}>Subscription</NavLink>
             <NavLink to="/about" className={navLinkClasses}>About Us</NavLink>
             <NavLink to="/contact" className={navLinkClasses}>Contact</NavLink>
           </nav>
@@ -146,6 +147,12 @@ const Header = ({ isScrolled }: HeaderProps) => {
               className={({isActive}) => `block py-2 px-4 ${isActive ? 'text-primary-600 font-medium' : 'text-gray-700'}`}
             >
               Testimonials
+            </NavLink>
+            <NavLink 
+              to="/subscription" 
+              className={({isActive}) => `block py-2 px-4 ${isActive ? 'text-primary-600 font-medium' : 'text-gray-700'}`}
+            >
+              Subscription
             </NavLink>
             <NavLink 
               to="/about" 

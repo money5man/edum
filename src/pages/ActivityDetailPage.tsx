@@ -3,36 +3,22 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Star } from 'lucide-react';
 import Button from '../components/ui/Button';
 import activitiesData, { Activity } from '../data/activitiesData';
-import { useAuth } from '../contexts/AuthContext';
+import ActivityEmbed from '../components/activities/ActivityEmbed';
 
 const ActivityDetailPage: React.FC = () => {
   const { activityId } = useParams<{ activityId: string }>();
   const navigate = useNavigate();
   const [started, setStarted] = useState(false);
-  const { user, hasSubscription } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
-  const [redirected, setRedirected] = useState(false);
 
   // Find the activity by id (string)
   const activity: Activity | undefined = activitiesData.find((act) => act.id === activityId);
 
   useEffect(() => {
-    // Wait for subscription check to complete
-    if (hasSubscription === null) {
-      setIsLoading(true);
-      return;
-    }
-
     setIsLoading(false);
+  }, []);
 
-    // Only redirect once and only if user is logged in and has no subscription
-    if (!redirected && hasSubscription === false && user) {
-      setRedirected(true);
-      navigate('/subscription');
-    }
-  }, [hasSubscription, navigate, user, redirected]);
-
-  // Show loading while checking subscription or activity not found yet
+  // Show loading while checking activity not found yet
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -44,12 +30,6 @@ const ActivityDetailPage: React.FC = () => {
   // If no activity found, redirect to activities page
   if (!activity) {
     navigate('/activities');
-    return null;
-  }
-
-  // If user is not logged in, redirect to login
-  if (!user) {
-    navigate('/login');
     return null;
   }
 
@@ -142,18 +122,7 @@ const ActivityDetailPage: React.FC = () => {
               <h1 className="font-nunito font-bold text-2xl text-gray-800 mb-6 text-center">
                 {activity.title}
               </h1>
-
-              <div className="aspect-video">
-                <iframe
-                  src={activity.tinyTapEmbedUrl}
-                  width="100%"
-                  height="100%"
-                  frameBorder="0"
-                  allowFullScreen
-                  title={activity.title}
-                  style={{ border: 0 }}
-                />
-              </div>
+              <ActivityEmbed embedUrl={activity.tinyTapEmbedUrl} />
             </div>
           </div>
         )}

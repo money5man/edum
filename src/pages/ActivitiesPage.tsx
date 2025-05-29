@@ -23,7 +23,7 @@ const ActivityPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            TinyTap Activities
+            Learning Activities
           </motion.h1>
           <motion.p
             className="text-lg text-gray-600"
@@ -31,7 +31,7 @@ const ActivityPage = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Explore fun, interactive TinyTap activities to boost your learning experience!
+            Explore our collection of interactive learning activities designed for children
           </motion.p>
         </div>
 
@@ -83,7 +83,7 @@ const ActivityPage = () => {
                     </Card.Content>
                     <Card.Footer>
                       <button className="w-full py-2 px-4 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
-                        Try Activity
+                        Start Activity
                       </button>
                     </Card.Footer>
                   </Card>
@@ -97,7 +97,7 @@ const ActivityPage = () => {
               <Search className="h-12 w-12 text-gray-400 mx-auto" />
             </div>
             <h3 className="text-xl font-medium text-gray-700 mb-2">No activities found</h3>
-            <p className="text-gray-500">Try adjusting your search to find something fun!</p>
+            <p className="text-gray-500">Try adjusting your search to find what you're looking for.</p>
           </div>
         )}
       </div>
